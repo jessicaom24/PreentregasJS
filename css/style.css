@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+
+
+.inicio{
+    
+    background: palevioletred;
+    font-family: "Tangerine", serif;
+    color:white;
+    font-size: 80px;
+    font-weight: 700;
+    font-style: normal;
+}
+header h1{
+    background: palevioletred;
+    font-family: "Tangerine", serif;
+    color:white;
+    font-size: 80px;
+    font-weight: 700;
+    font-style: normal;
+}
+.ing{
+    display: inline-block;
+    border: none;
+    background-color:rgba(128, 0, 128, 0.804);
+    margin: 15px;
+    color:white;
+}
+.Dcard{
+    display: flex;
+
+    display: inline-block;
+    background:bisque;
+    border: solid 1px rgb(0, 0, 0);
+    width: 15%;
+    height: auto;
+    margin: 1%;
+    font-size: 20px;
+    padding: 10px;
+}
+.txtcantidad{
+    width:35%;
+    
+}
+.btotal{
+    background-color:rgba(128, 0, 128, 0.804);
+    border: none;
+    margin: 1%;
+    color:white;
+    font-size: 20px;
+}
+
+.testructura tr th{
+    font-size: 20px;
+    width: .5%;
+    margin: 1%;
+    padding: 1%;
+    
+    
+}
+
+.uno{
+    background:bisque;   
+
+}

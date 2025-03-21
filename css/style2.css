@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+
+.navbar{
+    background: palevioletred !important;
+}
+.navbar-brand{
+    font-family: "Tangerine", serif;
+    color:white;
+    font-size: 40px;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.tarjetas{
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+}
+
+.btn{
+    background: rgb(197, 119, 145);
+    border:1px solid grey !important;
+    color:white;
+    width:40px;
+    text-align: center;
+    
+}
+/* .btn-danger{
+    margin: 4px;
+} */
+.btn.btn-carrito:hover{
+    background:purple;
+    border: 1px solid purple;
+    align-items: center;
+    color:white;
+}
+.btn.btn-ingreso:hover{
+    background:purple;
+    border: 1px solid purple;
+    align-items: center;
+    color:white;
+}
+.btn.btn-outline-success:hover{
+    background:purple;
+    border: 1px solid purple;
+    align-items: center;
+}
+.btn.btn-primary:hover{
+    background:purple;
+    border: 1px solid purple;
+}
+.btn.btn-secondary:hover{
+    background:purple;
+    border: 1px solid purple;
+}
+.btn.btnAgregar:hover{
+    background:rgb(65, 0, 65);
+    border: 1px solid rgb(65, 0, 65);
+    color: white;
+}
+.cantidad{
+    width: 40%;
+}
+
+.container h4 {
+    text-align: right;
+}
+
+.btn.btn-success{
+    margin: 5px;
+}
+/* .btn.btn-back{
+    margin: 5px;
+} */
+.btn.btn-back:hover{
+    background:rgb(65, 0, 65);
+    border: 1px solid rgb(65, 0, 65);
+    color: white;
+}
+
+.btn.btn-danger:hover{
+    background:red;
+    border: 1px solid rgb(65, 0, 65);
+    color: white;
+}

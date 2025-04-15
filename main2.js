@@ -1,132 +1,87 @@
-    let estructura = document.createElement("div")
-    estructura.className="contenedor";
-    estructura.innerHTML=`
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand">Dream's</a>
-
-        <!-- Contenedor de elementos alineados a la derecha -->
-        <div class="d-flex align-items-center gap-2">
-            <!-- Formulario de búsqueda -->
-            <form class="d-flex" role="search">
-                <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-
-            <!-- Botón de carrito -->
-            <button class="btn btn-carrito" id="btnCarrito" onclick="redirigirCarrito()">
-                <i class="fa-solid fa-bag-shopping"></i>
-            </button>
-
-            <!-- Botón de usuario -->
-            <button class="btn btn-ingreso">
-                <i class="fa-solid fa-user"></i>
-            </button>
-        </div>
-    </div>
-</nav>
-    <body>
-    <div class= "tarjetas row justify-content-center" >
-    <div class="card m-3" style="width: 18rem;">
-        <img src="./img/113780MARINO1.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">$79.00</h5>
-        <p class="card-text">Calzón tipo bóxer de seamless azul</p>
-        <a class="btn btn-secondary" onclick="modificarCantidad(1,-1)">-</a>
-                <input id="1" class="cantidad" type="text" value="0" readonly data-precio="79.00" data-descripcion="Calzón tipo bóxer de seamless azul">
-        <a class="btn btn-primary" onclick="modificarCantidad(1,1)">+</a>
-        <a class="btn btnAgregar" onclick="agregarAlCarrito(1)"><i class="fa-solid fa-cart-arrow-down"></i></a>
-        </div>
-    </div>
-    <div class="card m-3" style="width: 18rem;">
-        <img src="./img/74406OXFORD.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">$99.00</h5>
-        <p class="card-text">Panty coordinable corte hipster con encaje gris</p>
-        <a class="btn btn-secondary" onclick="modificarCantidad(2,-1)">-</a>
-                <input id="2" class="cantidad" type="text" value="0" readonly data-precio="99.00" data-descripcion="Panty coordinable corte hipster con encaje gris">
-        <a class="btn btn-primary" onclick="modificarCantidad(2,1)">+</a>
-        <a class="btn btnAgregar" onclick="agregarAlCarrito(2)"><i class="fa-solid fa-cart-arrow-down"></i></a>
-        </div>
-    </div>
-    <div class="card m-3" style="width: 18rem;">
-        <img src="./img/74429VINO.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">$99.00</h5>
-        <p class="card-text">Tanga coordinable con detalles de encaje vino</p>
-        <a class="btn btn-secondary" onclick="modificarCantidad(3,-1)">-</a>
-                <input id="3" class="cantidad" type="text" value="0" readonly data-precio="99.00" data-descripcion="Tanga coordinable con detalles de encaje vino">
-        <a class="btn btn-primary" onclick="modificarCantidad(3,1)">+</a>
-        <a class="btn btnAgregar" onclick="agregarAlCarrito(3)"><i class="fa-solid fa-cart-arrow-down"></i></a>
-        </div>
-    </div>
-    <div class="card m-3" style="width: 18rem;">
-        <img src="./img/75005-frente.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">$49.00</h5>
-        <p class="card-text">Bóxer coordinable seamless rosa pastel</p>
-        <a class="btn btn-secondary" onclick="modificarCantidad(4,-1)">-</a>
-                <input id="4" class="cantidad" type="text" value="0" readonly data-precio="99.00" data-descripcion="Bóxer coordinable seamless rosa pastel">
-        <a class="btn btn-primary" onclick="modificarCantidad(4,1)">+</a>
-        <a class="btn btnAgregar" onclick="agregarAlCarrito(4)"><i class="fa-solid fa-cart-arrow-down"></i></a>
-        </div>
-    </div>
-    <div class="card m-3" style="width: 18rem;">
-        <img src="./img/8842BLANCO.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">$99.00</h5>
-        <p class="card-text">Panty básica con control abdominal</p>
-        <a class="btn btn-secondary" onclick="modificarCantidad(5,-1)">-</a>
-                <input id="5" class="cantidad" type="text" value="0" readonly data-precio="99.00" data-descripcion="Panty básica con control abdominal">
-        <a class="btn btn-primary" onclick="modificarCantidad(5,1)">+</a>
-        <a class="btn btnAgregar" onclick="agregarAlCarrito(5)"><i class="fa-solid fa-cart-arrow-down"></i></a>
-        </div>
-    </div>
-    <div class="card m-3" style="width: 18rem;">
-        <img src="./img/cortelaser.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">$79.00</h5>
-        <p class="card-text">Calzón tipo cachetero corte láser</p>
-        <a class="btn btn-secondary" onclick="modificarCantidad(6,-1)">-</a>
-                <input id="6" class="cantidad" type="text" value="0" readonly data-precio="99.00" data-descripcion="Calzón tipo cachetero corte láser">
-        <a class="btn btn-primary" onclick="modificarCantidad(6,1)">+</a>
-        <a class="btn btnAgregar" onclick="agregarAlCarrito(6)"><i class="fa-solid fa-cart-arrow-down"></i></a>
-        </div>
-    </div>
-    <div class="card m-3" style="width: 18rem;">
-        <img src="./img/ECOMMERCE06JULIO_0000_72072U1.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">$69.00</h5>
-        <p class="card-text">Panty básica con detalle de mesh</p>
-        <a class="btn btn-secondary" onclick="modificarCantidad(7,-1)">-</a>
-                <input id="7" class="cantidad" type="text" value="0" readonly data-precio="99.00" data-descripcion="Panty básica con detalle de mesh">
-        <a class="btn btn-primary" onclick="modificarCantidad(7,1)">+</a>
-        <a class="btn btnAgregar" onclick="agregarAlCarrito(7)"><i class="fa-solid fa-cart-arrow-down"></i></a>
-        </div>
-    </div>
-    <div class="card m-3" style="width: 18rem;">
-        <img src="./img/panty-74918-frente.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">$99.00</h5>
-        <p class="card-text">Panty con detalles de encaje verde</p>
-        <a class="btn btn-secondary" onclick="modificarCantidad(8,-1)">-</a>
-                <input id="8" class="cantidad" type="text" value="0" readonly data-precio="99.00" data-descripcion="Panty con detalles de encaje verde">
-        <a class="btn btn-primary" onclick="modificarCantidad(8,1)">+</a>
-        <a class="btn btnAgregar" onclick="agregarAlCarrito(8)"><i class="fa-solid fa-cart-arrow-down"></i></a>
-        </div>
-    </div>
-    </div>
-    </body>
-    `
-    document.body.appendChild(estructura)
-
+ // Simulación de productos (puedes remplazar por fetch real luego)
+const productos = [
+    { id: 1, descripcion: "Calzón tipo bóxer de seamless azul", precio: 79.00, img: "./img/113780MARINO1.webp" },
+    { id: 2, descripcion: "Panty coordinable corte hipster con encaje gris", precio: 99.00, img: "./img/74406OXFORD.webp" },
+    { id: 3, descripcion: "Tanga coordinable con detalles de encaje vino", precio: 99.00, img: "./img/74429VINO.webp" },
+    { id: 4, descripcion: "Bóxer coordinable seamless rosa pastel", precio: 49.00, img: "./img/75005-frente.webp" },
+    { id: 5, descripcion: "Panty básica con control abdominal", precio: 99.00, img: "./img/8842BLANCO.webp" },
+    { id: 6, descripcion: "Calzón tipo cachetero corte láser", precio: 79.00, img: "./img/cortelaser.webp" },
+    { id: 7, descripcion: "Panty básica con detalle de mesh", precio: 69.00, img: "./img/ECOMMERCE06JULIO_0000_72072U1.webp" },
+    { id: 8, descripcion: "Panty con detalles de encaje verde", precio: 99.00, img: "./img/panty-74918-frente.webp" },
+];
 
 const arrUsuarios = [
     { nombre: "Raul", passw: "1234" },
     { nombre: "Maria", passw: "5678" },
 ];
 
-// Función para verificar si el usuario ya está autenticado
+// Estructura base
+let estructura = document.createElement("div");
+estructura.className = "contenedor";
+estructura.innerHTML = `
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand">Dream's</a>
+            <div class="d-flex align-items-center gap-2">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+                <button class="btn btn-carrito" id="btnCarrito" onclick="redirigirCarrito()">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </button>
+                <button class="btn btn-ingreso">
+                    <i class="fa-solid fa-user"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="tarjetas row justify-content-center p-4"></div>
+`;
+document.body.appendChild(estructura);
+
+// Simulación fetch (puedes cambiar luego por fetch real)
+function obtenerProductos() {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(productos), 1000);
+    });
+}
+
+async function renderProductos() {
+    const contenedor = document.querySelector(".tarjetas");
+    contenedor.innerHTML = "<p>Cargando productos...</p>";
+
+    try {
+        const productos = await obtenerProductos();
+        contenedor.innerHTML = "";
+
+        productos.forEach(producto => {
+            const card = document.createElement("div");
+            card.className = "card m-3";
+            card.style.width = "18rem";
+            card.innerHTML = `
+                <img src="${producto.img}" class="card-img-top" alt="${producto.descripcion}">
+                <div class="card-body">
+                    <h5 class="card-title">$${producto.precio.toFixed(2)}</h5>
+                    <p class="card-text">${producto.descripcion}</p>
+                    <a class="btn btn-secondary" onclick="modificarCantidad(${producto.id},-1)">-</a>
+                    <input id="${producto.id}" class="cantidad" type="text" value="0" readonly 
+                        data-precio="${producto.precio}" data-descripcion="${producto.descripcion}">
+                    <a class="btn btn-primary" onclick="modificarCantidad(${producto.id},1)">+</a>
+                    <a class="btn btnAgregar" onclick="agregarAlCarrito(${producto.id})">
+                        <i class="fa-solid fa-cart-arrow-down"></i></a>
+                </div>
+            `;
+            contenedor.appendChild(card);
+        });
+    } catch (err) {
+        contenedor.innerHTML = "<p>Error al cargar productos</p>";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", renderProductos);
+
+// Autenticación
 function checkSession() {
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (loggedInUser) {
@@ -181,60 +136,49 @@ if (localStorage.getItem("loggedInUser")) {
     logoutButton.innerHTML = `<i class="fa-solid fa-sign-out-alt"></i>`;
     logoutButton.classList.add("btn", "btn-danger");
     logoutButton.onclick = logout;
-
-    const ingresoButton = document.querySelector(".btn-ingreso");
-
-    if (ingresoButton) {
-        ingresoButton.insertAdjacentElement("afterend", logoutButton);
-    }
+    document.querySelector(".btn-ingreso").insertAdjacentElement("afterend", logoutButton);
 }
 
+// Carrito
 let carrito = [];
 
 function modificarCantidad(id, cambio) {
-    let inputCantidad = document.getElementById(id);
-    let nuevaCantidad = Math.max(0, parseInt(inputCantidad.value) + cambio);
-    inputCantidad.value = nuevaCantidad;
+    let input = document.getElementById(id);
+    let nuevaCantidad = Math.max(0, parseInt(input.value) + cambio);
+    input.value = nuevaCantidad;
 
-    let productoEnCarrito = carrito.find(item => item.id === id);
-    if (productoEnCarrito) {
-        productoEnCarrito.cantidad = nuevaCantidad;
-
+    let producto = carrito.find(p => p.id === id);
+    if (producto) {
+        producto.cantidad = nuevaCantidad;
         if (nuevaCantidad === 0) {
-            carrito = carrito.filter(item => item.id !== id);
-            Swal.fire("Producto eliminado", `❌ El producto ${productoEnCarrito.descripcion} ha sido eliminado del carrito.`, "info");
+            carrito = carrito.filter(p => p.id !== id);
+            Swal.fire("Producto eliminado", `❌ ${producto.descripcion}`, "info");
+        } else {
+            Swal.fire("Cantidad actualizada", `Nueva cantidad: ${nuevaCantidad}`, "success");
         }
-
-        Swal.fire("Cantidad actualizada", `La cantidad de ${productoEnCarrito.descripcion} es ahora ${nuevaCantidad}`, "success");
         calcularTotal();
     }
 }
 
 function agregarAlCarrito(id) {
-    let producto = document.getElementById(id);
-    let cantidad = parseInt(producto.value);
-    let precio = parseFloat(producto.getAttribute("data-precio"));
-    let descripcion = producto.getAttribute("data-descripcion");
+    let input = document.getElementById(id);
+    let cantidad = parseInt(input.value);
+    let precio = parseFloat(input.getAttribute("data-precio"));
+    let descripcion = input.getAttribute("data-descripcion");
 
     if (cantidad > 0) {
-        let itemIndex = carrito.findIndex(item => item.id === id);
-        if (itemIndex > -1) {
-            carrito[itemIndex].cantidad += cantidad;
+        let index = carrito.findIndex(p => p.id === id);
+        if (index > -1) {
+            carrito[index].cantidad += cantidad;
         } else {
-            carrito.push({
-                id: id,
-                descripcion: descripcion,
-                precio: precio,
-                cantidad: cantidad
-            });
+            carrito.push({ id, descripcion, precio, cantidad });
         }
 
         localStorage.setItem("carrito", JSON.stringify(carrito));
-
-        Swal.fire("Producto agregado", `✅ Has agregado ${cantidad} ${descripcion} al carrito.`, "success");
+        Swal.fire("Producto agregado", `✅ ${cantidad} x ${descripcion}`, "success");
         calcularTotal();
     } else {
-        Swal.fire("Cantidad inválida", "❌ Selecciona al menos un producto antes de agregarlo al carrito.", "warning");
+        Swal.fire("Cantidad inválida", "❌ Selecciona al menos uno", "warning");
     }
 }
 
@@ -249,36 +193,6 @@ function redirigirCarrito() {
         calcularTotal();
         window.location.href = "./carrito.html";
     } else {
-        Swal.fire({
-            title: "Para acceder al carrito, inicia sesión",
-            html: `
-                <input type="text" id="username" class="swal2-input" placeholder="Usuario">
-                <input type="password" id="password" class="swal2-input" placeholder="Contraseña">
-            `,
-            showCancelButton: true,
-            confirmButtonText: "Iniciar sesión",
-            preConfirm: () => {
-                const username = document.getElementById("username").value;
-                const password = document.getElementById("password").value;
-
-                if (!username || !password) {
-                    Swal.showValidationMessage("Todos los campos son obligatorios");
-                    return false;
-                }
-
-                const userFound = arrUsuarios.find(user => user.nombre === username && user.passw === password);
-
-                if (!userFound) {
-                    Swal.showValidationMessage("Usuario o contraseña incorrectos");
-                    return false;
-                }
-
-                localStorage.setItem("loggedInUser", username);
-                Swal.fire(`Bienvenido, ${username}`).then(() => {
-                    calcularTotal();
-                    window.location.href = "./carrito.html";
-                });
-            }
-        });
+        login();
     }
 }

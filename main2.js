@@ -120,21 +120,23 @@
     `
     document.body.appendChild(estructura)
 
-    const arrUsuarios = [
-        { nombre: "Raul", passw: "1234" },
-        { nombre: "Maria", passw: "5678" },
-    ];
-    
-    // Función para verificar si el usuario ya está autenticado
-    function checkSession() {
-        const loggedInUser = localStorage.getItem("loggedInUser");
-        if (loggedInUser) {
-            Swal.fire(`Bienvenido de nuevo, ${loggedInUser}`);
-            return true;
-        }
-        return false;
+
+const arrUsuarios = [
+    { nombre: "Raul", passw: "1234" },
+    { nombre: "Maria", passw: "5678" },
+];
+
+// Función para verificar si el usuario ya está autenticado
+function checkSession() {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+        Swal.fire(`Bienvenido de nuevo, ${loggedInUser}`);
+        return true;
     }
-    function login(){
+    return false;
+}
+
+function login() {
     if (!checkSession()) {
         Swal.fire({
             title: "Para comprar, inicia sesión",
@@ -147,80 +149,63 @@
             preConfirm: () => {
                 const username = document.getElementById("username").value;
                 const password = document.getElementById("password").value;
-    
-    
-                 // Validar si los campos están vacíos
+
                 if (!username || !password) {
                     Swal.showValidationMessage("Todos los campos son obligatorios");
                     return false;
                 }
-    
-                // Buscar el usuario en el array
+
                 const userFound = arrUsuarios.find(user => user.nombre === username && user.passw === password);
-    
+
                 if (!userFound) {
                     Swal.showValidationMessage("Usuario o contraseña incorrectos");
                     return false;
                 }
-    
-                // Guardamos el usuario en localStorage
+
                 localStorage.setItem("loggedInUser", username);
                 Swal.fire(`Bienvenido, ${username}`).then(() => location.reload());
             }
         });
     }
 }
+
 document.querySelector(".btn-ingreso").addEventListener("click", login);
 
-    // Función para cerrar sesión
-    function logout() {
-        localStorage.removeItem("loggedInUser");
-        Swal.fire("Sesión cerrada").then(() => location.reload());
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    Swal.fire("Sesión cerrada").then(() => location.reload());
+}
+
+if (localStorage.getItem("loggedInUser")) {
+    const logoutButton = document.createElement("button");
+    logoutButton.innerHTML = `<i class="fa-solid fa-sign-out-alt"></i>`;
+    logoutButton.classList.add("btn", "btn-danger");
+    logoutButton.onclick = logout;
+
+    const ingresoButton = document.querySelector(".btn-ingreso");
+
+    if (ingresoButton) {
+        ingresoButton.insertAdjacentElement("afterend", logoutButton);
     }
-    
-    // Agrega un botón de cierre de sesión si el usuario está logueado
-    if (localStorage.getItem("loggedInUser")) {
-        const logoutButton = document.createElement("button");
-        logoutButton.innerHTML = `<i class="fa-solid fa-sign-out-alt"></i>`;
-        logoutButton.classList.add("btn", "btn-danger");
-        logoutButton.onclick = logout;
-    
-        const ingresoButton = document.querySelector(".btn-ingreso");
-    
-        if (ingresoButton) {
-            ingresoButton.insertAdjacentElement("afterend", logoutButton);
-        }
-    }
+}
 
-        //agregar y quitar productos
-
-    function modificarCantidad(id, valor) {
-        let input = document.getElementById(id);
-        let cantidad = parseInt(input.value) || 0;
-        cantidad += valor;
-
-        if (cantidad < 0) cantidad = 0; // Evita números negativos
-        input.value = cantidad;
-    }
-
-    let carrito = [];
+let carrito = [];
 
 function modificarCantidad(id, cambio) {
     let inputCantidad = document.getElementById(id);
     let nuevaCantidad = Math.max(0, parseInt(inputCantidad.value) + cambio);
     inputCantidad.value = nuevaCantidad;
 
-    // Actualizar carrito si la cantidad ha cambiado
     let productoEnCarrito = carrito.find(item => item.id === id);
     if (productoEnCarrito) {
         productoEnCarrito.cantidad = nuevaCantidad;
 
         if (nuevaCantidad === 0) {
-            // Si la cantidad es 0, quitar el producto del carrito
             carrito = carrito.filter(item => item.id !== id);
-            alert(`❌ El producto ${productoEnCarrito.descripcion} ha sido eliminado del carrito.`);
+            Swal.fire("Producto eliminado", `❌ El producto ${productoEnCarrito.descripcion} ha sido eliminado del carrito.`, "info");
         }
-        console.log("Carrito actualizado después de cambiar la cantidad:", carrito);
+
+        Swal.fire("Cantidad actualizada", `La cantidad de ${productoEnCarrito.descripcion} es ahora ${nuevaCantidad}`, "success");
         calcularTotal();
     }
 }
@@ -234,10 +219,8 @@ function agregarAlCarrito(id) {
     if (cantidad > 0) {
         let itemIndex = carrito.findIndex(item => item.id === id);
         if (itemIndex > -1) {
-            // Si ya existe el producto en el carrito, solo actualizamos la cantidad
             carrito[itemIndex].cantidad += cantidad;
         } else {
-            // Si no existe, agregamos el nuevo producto
             carrito.push({
                 id: id,
                 descripcion: descripcion,
@@ -245,30 +228,26 @@ function agregarAlCarrito(id) {
                 cantidad: cantidad
             });
         }
+
         localStorage.setItem("carrito", JSON.stringify(carrito));
 
-        // Mensaje personalizado según el producto agregado
-        alert(`✅ Has agregado ${cantidad} ${descripcion} al carrito.`);
-        console.log("Carrito actualizado:", carrito);
+        Swal.fire("Producto agregado", `✅ Has agregado ${cantidad} ${descripcion} al carrito.`, "success");
         calcularTotal();
     } else {
-        alert("❌ Selecciona al menos un producto antes de agregarlo al carrito.");
+        Swal.fire("Cantidad inválida", "❌ Selecciona al menos un producto antes de agregarlo al carrito.", "warning");
     }
 }
 
 function calcularTotal() {
     let total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
-    console.log("Total a pagar: $" + total.toFixed(2));
-
-     // Almacenar el total en el localStorage
     localStorage.setItem("total", total.toFixed(2));
+    Swal.fire("Total actualizado", `Total a pagar: $${total.toFixed(2)}`, "info");
 }
 
-
 function redirigirCarrito() {
-    if (checkSession()) {  // Verifica si hay un usuario logueado
-        calcularTotal();  // Llamar a la función para calcular el total
-        window.location.href = "./carrito.html";  // Redirigir a la página del carrito
+    if (checkSession()) {
+        calcularTotal();
+        window.location.href = "./carrito.html";
     } else {
         Swal.fire({
             title: "Para acceder al carrito, inicia sesión",
@@ -282,13 +261,11 @@ function redirigirCarrito() {
                 const username = document.getElementById("username").value;
                 const password = document.getElementById("password").value;
 
-                // Validar si los campos están vacíos
                 if (!username || !password) {
                     Swal.showValidationMessage("Todos los campos son obligatorios");
                     return false;
                 }
 
-                // Buscar el usuario en el array
                 const userFound = arrUsuarios.find(user => user.nombre === username && user.passw === password);
 
                 if (!userFound) {
@@ -296,9 +273,11 @@ function redirigirCarrito() {
                     return false;
                 }
 
-                // Guardamos el usuario en localStorage
                 localStorage.setItem("loggedInUser", username);
-                Swal.fire(`Bienvenido, ${username}`).then(() => location.reload());
+                Swal.fire(`Bienvenido, ${username}`).then(() => {
+                    calcularTotal();
+                    window.location.href = "./carrito.html";
+                });
             }
         });
     }
